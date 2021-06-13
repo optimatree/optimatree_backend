@@ -5,7 +5,7 @@ import re
 def IsValidUsername(username):
     # A regex expression mapping the string to alphanumeric username 
     # with the exception of '_' and '-'.
-    return re.fullmatch("^[A-Za-z0-9_-]+$", username) and len(username) > 1
+    return bool(re.fullmatch("^[A-Za-z0-9_-]+$", username) and len(username) > 1)
 
 def UsernameExists(username):
     if User.objects.filter(username=username).exists():
@@ -21,13 +21,19 @@ def EmailExists(email):
     return False
 
 def isEmailValid(email):
-    return re.fullmatch("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", email)
+    return bool(re.fullmatch("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", email))
 
 def createuser(username, email, password, first_name, last_name):
-    if isEmailValid(email) and EmailExists(email):
-        return response.sendstatus("Email Already Exists!")
+    if isEmailValid(email) is False:
+        return response.sendstatus("Email format invalid")
     
-    if IsValidUsername(username) and UsernameExists(username):
+    if EmailExists(email):
+        return response.sendstatus("Email Already Exists!")
+
+    if IsValidUsername(username) is False:
+        return response.sendstatus("Username format invalid!")
+
+    if UsernameExists(username):
         return response.sendstatus("Username Already Exists!")
 
     if ValidatePassword(password) is False:
