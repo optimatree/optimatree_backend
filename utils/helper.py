@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from utils import response
 import re
     
 def IsValidUsername(username):
@@ -21,3 +22,18 @@ def EmailExists(email):
 
 def isEmailValid(email):
     return re.fullmatch("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", email)
+
+def createuser(username, email, password, first_name, last_name):
+    if isEmailValid(email) and EmailExists(email):
+        return response.sendstatus("Email Already Exists!")
+    
+    if IsValidUsername(username) and UsernameExists(username):
+        return response.sendstatus("Username Already Exists!")
+
+    if ValidatePassword(password) is False:
+        return response.sendstatus("Enter a Valid Password!")
+    
+    user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name, email=email, password=password)
+    user.save()
+
+    return response.success

@@ -1,7 +1,5 @@
-from authentication import response
-from django.http import HttpRequest
-from utils.validate import *
-from django.contrib.auth.models import User
+from utils import response
+from utils.helper import *
 
 def login(request, *args, **kwargs):
     return response.failure
@@ -15,19 +13,7 @@ def signup(request, *args, **kwargs):
     username = query.get(key="username")
     password = query.get(key="password")
 
-    if isEmailValid(email) and EmailExists(email):
-        return response.sendstatus("Email Already Exists!")
-    
-    if IsValidUsername(username) and UsernameExists(username):
-        return response.sendstatus("Username Already Exists!")
-
-    if ValidatePassword(password) is False:
-        return response.sendstatus("Enter a Valid Password!")
-    
-    user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name, email=email, password=password)
-    user.save()
-
-    return response.success
+    return createuser(username, email, password, first_name, last_name)
 
 def checkemailid(request, *args, **kwargs):
     if EmailExists(request.GET.get(key="email")):
