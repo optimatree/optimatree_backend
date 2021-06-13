@@ -1,1 +1,1 @@
-# optimatree_backend
+# OptimaTree: A Social Network for Programmers
