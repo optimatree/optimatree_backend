@@ -6,7 +6,6 @@ def login(request, *args, **kwargs):
 
 def signup(request, *args, **kwargs):
     query = request.POST
-
     email = query.get(key="email")
     first_name = query.get(key="first_name")
     last_name = query.get(key="last_name")
