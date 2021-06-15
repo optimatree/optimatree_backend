@@ -1,7 +1,7 @@
 from django.http.response import JsonResponse
 
-success = JsonResponse({"status": "success"})
-failure = JsonResponse({"status": "failure"})
+success = JsonResponse({"msg": "success"})
+failure = JsonResponse({"msg": "failure"})
 
 def sendstatus(status_msg):
-    return JsonResponse({"status": status_msg})
+    return JsonResponse({"msg": status_msg})

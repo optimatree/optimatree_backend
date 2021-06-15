@@ -23,3 +23,6 @@ def EmailExists(email):
 def isEmailValid(email):
     return bool(re.fullmatch("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", email))
 
+# Functions for Authentication Checking
+def check_auth(token):
+    return (token == "hello")
