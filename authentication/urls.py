@@ -6,5 +6,6 @@ urlpatterns = [
     path('login/', csrf_exempt(login)),
     path('signup/', csrf_exempt(signup)),
     path('checkusername/', csrf_exempt(checkusername)),
-    path('checkemailid/', csrf_exempt(checkemailid))
+    path('checkemailid/', csrf_exempt(checkemailid)),
+    path('deleteuser/', csrf_exempt(deleteuser))
 ]
