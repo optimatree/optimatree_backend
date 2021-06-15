@@ -69,6 +69,7 @@ class ProfilesHandler:
         for key in ProfilesHandler.restricted_fields:
             result[key] = fields[key]
         user.from_dict(result)
+        user.save()
         return response.success
 
     @staticmethod

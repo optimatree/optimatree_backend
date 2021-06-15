@@ -1,8 +1,22 @@
 from utils import response
 from profiles.ProfilesHandler import ProfilesHandler
 from utils.helper import *
-def login(request, *args, **kwargs):
-    return response.failure
+from django.contrib.auth import authenticate, login, logout
+def signin(request, *args, **kwargs):
+    query = request.POST
+    username = query.get(key="username")
+    password = query.get(key="password")
+    print(username, password)
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+    else:
+        return response.sendstatus('Not Authenticated')
+    return response.sendstatus('User Authenticated')
+
+def signout(request, *args, **kwargs):
+    logout(request)
+    return response.sendstatus("Sign out successful")
 
 def signup(request, *args, **kwargs):
     query = request.POST
@@ -27,6 +41,11 @@ def deleteuser(request, *args, **kwargs):
     if UsernameExists(request.POST.get(key="username")) is False:
         return response.sendstatus('Username does not exist')
     username = request.POST.get(key="username")
+    password = request.POST.get(key="password")
+    if password is None:
+        return response.sendstatus('Invalid request')
     user = User.objects.get(username=username)
-    user.delete()
-    return response.succes
+    if user.check_password(password):
+        user.delete()
+        return response.success
+    return response.sendstatus('Wrong password')
