@@ -41,5 +41,9 @@ def createuser(username, email, password, first_name, last_name):
     
     user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name, email=email, password=password)
     user.save()
-
+    print(user.is_authenticated)
     return response.success
+
+# Functions for Authentication Checking
+def check_auth(token):
+    return (token == "hello")
