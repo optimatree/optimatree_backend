@@ -3,7 +3,13 @@ from profiles.models import Profile
 from django.contrib.auth.models import User
 from django.http.response import JsonResponse
 from django.forms.models import model_to_dict
+<<<<<<< HEAD
 from utils.auth_helper import *
+=======
+from utils.helper import *
+from django_email_verification import send_email
+
+>>>>>>> 0724ebdaa4ecb5804930f6afae9cc2ef1d8ec6fd
 
 class ProfilesHandler:
     restricted_fields = ['username', 'email', 'first_name', 'last_name']
@@ -26,6 +32,8 @@ class ProfilesHandler:
 
         user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name, email=email, password=password)
         profile = Profile(user=user, bio="Hey there!")
+        user.is_active = False
+        send_email(user)
         user.save()
         profile.save()
         return response.success
