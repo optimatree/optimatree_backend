@@ -3,9 +3,10 @@ from profiles.models import Profile
 from django.contrib.auth.models import User
 from django.http.response import JsonResponse
 from django.forms.models import model_to_dict
+
+from utils.auth_helper import *
 from utils.helper import *
 from django_email_verification import send_email
-
 
 class ProfilesHandler:
     restricted_fields = ['username', 'email', 'first_name', 'last_name']
