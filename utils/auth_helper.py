@@ -99,3 +99,6 @@ def get_user_by_token(token):
         return t.user
     
     return AnonymousUser()
+
+def getuserfromresettoken(reset_token):
+    pass
