@@ -1,8 +1,10 @@
+from django.views.decorators.csrf import csrf_exempt
 from utils import response
 
 
 class RequestHandler:
-    def HandleRequest(self, request, *args, **kwargs):
+    @csrf_exempt
+    def handle_request(self, request, *args, **kwargs):
         if request.method == "GET":
             return self.get(request, *args, **kwargs)
         elif request.method == "POST":
