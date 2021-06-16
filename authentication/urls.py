@@ -9,5 +9,6 @@ urlpatterns = [
     path('checkusername/', checkusername),
     path('checkemailid/', checkemailid),
     path('deleteuser/', deleteuser),
-    path('checkuser/', check_user)
+    path('checkuser/', check_user),
+    path('tokenrefresh/', TokenRefresh().handle_request),
 ]

@@ -51,7 +51,12 @@ class ProfilesHandler:
 
     @staticmethod
     def getUserProfileByUsername(username, unrestricted=False):
-        user = User.objects.get(username=username)
+        users = User.objects.filter(username=username)
+        user = None
+        
+        if len(users) > 0:
+            user = users.first()
+            
         user_info = ProfilesHandler.getProfileInfo(user, unrestricted)
         return JsonResponse({'user_info': user_info})
     
