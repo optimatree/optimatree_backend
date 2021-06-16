@@ -3,11 +3,11 @@ from .views import *
 from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
-    path('signin/', csrf_exempt(signin)),
-    path('signout/', csrf_exempt(signout)),
-    path('signup/', csrf_exempt(signup)),
-    path('checkusername/', csrf_exempt(checkusername)),
-    path('checkemailid/', csrf_exempt(checkemailid)),
-    path('deleteuser/', csrf_exempt(deleteuser)),
-    path('checkuser/', csrf_exempt(check_user))
+    path('signin/', signin),
+    path('signout/', signout),
+    path('signup/', signup),
+    path('checkusername/', checkusername),
+    path('checkemailid/', checkemailid),
+    path('deleteuser/', deleteuser),
+    path('checkuser/', check_user)
 ]

@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 import json
 from json.decoder import JSONDecodeError
 from utils.decorators import HandleError, delete, get, post, unauthorized_get, unauthorized_post
-=======
 from django.http.response import JsonResponse
->>>>>>> 0724ebdaa4ecb5804930f6afae9cc2ef1d8ec6fd
 from utils import response
 from profiles.ProfilesHandler import ProfilesHandler
 from utils.auth_helper import *
@@ -82,6 +79,7 @@ def deleteuser(request, *args, **kwargs):
     
     return response.sendstatus('Wrong password')
 
+@unauthorized_post
 def check_user(request, *args, **kwargs):
     if UsernameExists(request.POST.get(key="username")) is False:
         return response.sendstatus('Username does not exist')

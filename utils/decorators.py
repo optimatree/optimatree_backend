@@ -68,36 +68,36 @@ class Authorized:
 
         return return_function
 
-@csrf_exempt
 def get(function):
     
+    @csrf_exempt
     @Authorized(method='GET')
     def return_function(request, *args, **kwargs):
         return function(request, *args, **kwargs)
 
     return return_function
 
-@csrf_exempt
 def post(function):
     
+    @csrf_exempt
     @Authorized(method='POST')
     def return_function(request, *args, **kwargs):
         return function(request, *args, **kwargs)
 
     return return_function
 
-@csrf_exempt
 def put(function):
     
+    @csrf_exempt
     @Authorized(method='PUT')
     def return_function(request, *args, **kwargs):
         return function(request, *args, **kwargs)
 
     return return_function
 
-@csrf_exempt
 def delete(function):
     
+    @csrf_exempt
     @Authorized(method='DELETE')
     def return_function(request, *args, **kwargs):
         return function(request, *args, **kwargs)
@@ -108,36 +108,36 @@ def delete(function):
 """
     Unauthorized Requests
 """
-@csrf_exempt
 def unauthorized_get(function):
     
+    @csrf_exempt
     @Request('GET')
     def return_function(request, *args, **kwargs):
         return function(request, *args, **kwargs)
 
     return return_function
 
-@csrf_exempt
 def unauthorized_post(function):
 
+    @csrf_exempt
     @Request('POST')
     def return_function(request, *args, **kwargs):
         return function(request, *args, **kwargs)
 
     return return_function
 
-@csrf_exempt
 def unauthorized_put(function):
     
+    @csrf_exempt
     @Request('PUT')
     def return_function(request, *args, **kwargs):
         return function(request, *args, **kwargs)
 
     return return_function
 
-@csrf_exempt
 def unauthorized_delete(function):
 
+    @csrf_exempt
     @Request('DELETE')
     def return_function(request, *args, **kwargs):
         return function(request, *args, **kwargs)
