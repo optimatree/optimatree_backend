@@ -8,5 +8,6 @@ urlpatterns = [
     path('signup/', csrf_exempt(signup)),
     path('checkusername/', csrf_exempt(checkusername)),
     path('checkemailid/', csrf_exempt(checkemailid)),
-    path('deleteuser/', csrf_exempt(deleteuser))
+    path('deleteuser/', csrf_exempt(deleteuser)),
+    path('checkuser/', csrf_exempt(check_user))
 ]
