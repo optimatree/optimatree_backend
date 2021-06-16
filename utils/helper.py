@@ -1,28 +1,8 @@
-from utils import response
-from django.contrib.auth.models import User
-import re
-    
-def IsValidUsername(username):
-    # A regex expression mapping the string to alphanumeric username 
-    # with the exception of '_' and '-'.
-    return bool(re.fullmatch("^[A-Za-z0-9_-]+$", username) and len(username) > 1)
+from django.conf import settings
 
-def UsernameExists(username):
-    if User.objects.filter(username=username).exists():
-        return True
-    return False
+def print_output(msg):
+    if settings.DEBUG:
+        print(msg)
 
-def ValidatePassword(password):
-    return len(password) > 7
-
-def EmailExists(email):
-    if User.objects.filter(email=email).exists():
-        return True
-    return False
-
-def isEmailValid(email):
-    return bool(re.fullmatch("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", email))
-
-# Functions for Authentication Checking
-def check_auth(token):
-    return (token == "hello")
+    # TODO: To handle Later
+    print(msg)
